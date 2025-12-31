@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local envs
+.venv/
+venv/
+.env
+.env.*
+
+# Outputs / reports
+eval_report*.jsonl
+smoke_eval.jsonl
+/tmp/
+*.log
+
+# Model artifacts (keep OUT of normal git)
+adapters/
+mistral7b-*-lora-*/
+**/*.safetensors
+**/*.pt
+**/*.pth
+**/checkpoint-*/
+**/optimizer.pt
+**/scheduler.pt
+**/rng_state.pth
+**/trainer_state.json
+**/training_args.bin
+
+# HuggingFace cache (usually outside repo, but just in case)
+.cache/
