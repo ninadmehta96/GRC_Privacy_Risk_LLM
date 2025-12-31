@@ -31,3 +31,4 @@ mistral7b-*-lora-*/
 
 # HuggingFace cache (usually outside repo, but just in case)
 .cache/
+*.bak.*
