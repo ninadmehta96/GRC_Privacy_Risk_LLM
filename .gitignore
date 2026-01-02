@@ -32,3 +32,9 @@ mistral7b-*-lora-*/
 # HuggingFace cache (usually outside repo, but just in case)
 .cache/
 *.bak.*
+# ---- Cluster1 local artifacts ----
+reports/
+runs/
+eval_report*.jsonl
+smoke_eval*.jsonl
+*.bak.*
