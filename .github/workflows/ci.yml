@@ -31,3 +31,31 @@ jobs:
       - name: Unit tests (if present)
         run: |
           pytest -q || true
+
+  gpu_smoke:
+    # Requires a self-hosted runner labeled: self-hosted, linux, x64, gpu
+    runs-on: [self-hosted, linux, x64, gpu]
+    needs: cpu_checks
+    # Only run when relevant files change
+    if: |
+      github.event_name == 'push' ||
+      contains(toJson(github.event.pull_request.changed_files), '')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Python + GPU
+        run: |
+          python --version
+          nvidia-smi
+
+      - name: Smoke gate
+        run: |
+          make smoke
+
+      - name: Upload smoke report artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-reports
+          path: reports/*.jsonl
