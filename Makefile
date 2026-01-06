@@ -41,3 +41,18 @@ eval-risk:
 
 clean-reports:
 	rm -rf $(REPORTS_DIR)
+
+ci-v2:
+	POLICY_DATA=data/training_data/v2/grc_policy_refactor_v2_strict_splits.jsonl \
+	RISK_DATA=data/training_data/v2/grc_risk_narrative_v2_strict_splits.jsonl \
+	SPLIT=test \
+	$(MAKE) ci
+# ---- Smoke gate (messy real-world snippets) ----
+SMOKE_DATA ?= data/smoke/cluster1_smoke_inputs.jsonl
+
+.PHONY: smoke
+
+smoke:
+	@mkdir -p $(REPORTS_DIR)
+	$(PYTHON_BIN) unit_testing/smoke_gate.py --smoke-data $(SMOKE_DATA) \
+	  --policy-lora $(POLICY_LORA) --risk-lora $(RISK_LORA)

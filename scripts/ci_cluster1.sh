@@ -17,6 +17,9 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
+# Always execute from repo root so relative paths resolve consistently
+cd "$REPO_ROOT"
+
 PYTHON_BIN="${PYTHON_BIN:-python}"
 EVAL_SCRIPT_DEFAULT="${REPO_ROOT}/unit_testing/eval_cluster1_strict.py"
 
@@ -115,7 +118,7 @@ run_eval() {
 
   echo "--- Running strict eval: $task ${extra_flag:-} ---"
   set +e
-  "$PYTHON_BIN" "$EVAL_SCRIPT" \
+  PYTHONPATH="${REPO_ROOT}${PYTHONPATH:+:${PYTHONPATH}}" "$PYTHON_BIN" "$EVAL_SCRIPT" \
     --task "$task" \
     --data "$data" \
     --split "$SPLIT" \
