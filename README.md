@@ -1,3 +1,5 @@
+[![CI (Public)](https://github.com/ninadmehta96/GRC_Privacy_Risk_LLM/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ninadmehta96/GRC_Privacy_Risk_LLM/actions/workflows/ci.yml)
+
 # Cluster1 — GRC LoRAs (Policy Refactor + Risk Narrative)
 
 <<<<<<< HEAD
