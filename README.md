@@ -1,6 +1,6 @@
 # GRC Privacy Risk LLM — Cluster 1 (Policy Refactor & Risk Narrative)
 
-This repository is a **public, recruiter‑friendly slice** of my local InfoSec LLM work.
+This repository is a **public slice** of my local InfoSec LLM work.
 
 It demonstrates how to design **reliable, guardrailed LLM behavior** for Governance, Risk, and Privacy use‑cases — with a strong emphasis on:
 - correctness over creativity
