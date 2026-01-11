@@ -3,7 +3,7 @@
 # GRC Privacy Risk LLM — Cluster 1  
 ### Policy Refactor & Risk Narrative (Public Evaluation Slice)
 
-This repository is a **public, recruiter‑friendly slice** of my local InfoSec / GRC LLM work.
+This repository is a **public slice** of my local InfoSec / GRC LLM work.
 
 It focuses on something that matters in regulated domains but is often under‑engineered:
 **reliability, correctness, and non‑hallucination guarantees**, not just fluent text generation.
@@ -34,7 +34,7 @@ Both behaviors support a **Strict** mode intended for audit‑safe usage.
 
 ---
 
-## 60‑second demo (recommended)
+## 60‑second demo
 
 ```bash
 make ci
