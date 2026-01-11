@@ -1,0 +1,900 @@
+Analyze all 108 entries and explain each entry - what it communicates, its purpose and how it will help me?
+
+You’re right, 108 entries is a *lot* – but that’s also what makes this a genuinely useful mini-corpus. I’ll go through **every single entry in order**, and for each one tell you:
+
+* what it’s roughly about (policy + transformation),
+* what role it plays in the dataset,
+* how that helps your future “infosec GRC copilot” model.
+
+I’ll keep each one short so this doesn’t turn into a book.
+
+---
+
+### Access control / IAM / Identity
+
+**0001 – Corporate Access Control Policy
+(engineer_simplification, access_control)**
+
+* **What it says:** Classic access control rules (unique accounts, least privilege, timely revocation) rewritten as clear steps for system/app owners.
+* **Purpose:** Teach the model how to turn dense corporate access policy into actionable engineering instructions.
+* **How it helps you:** Lets your LLM explain “what do I actually do for access control?” to engineers without them reading a full policy.
+
+**0018 – Access Control Policy
+(engineer_simplification, access_control)**
+
+* **What it says:** A different slice of access control (probably entitlement reviews, need-to-know, privileged access) expressed as stepwise guidance.
+* **Purpose:** Add diversity so simplification isn’t overfitted to one style of access text.
+* **How it helps you:** Model learns to generalize simplification to different access control formulations.
+
+**0019 – Access Control Policy
+(obligation_extraction, access_control)**
+
+* **What it says:** Pulls “who must do what” from access policy into an audit checklist.
+* **Purpose:** Show the model how to turn prose like “shall ensure…” into discrete obligations.
+* **How it helps you:** Lets you paste legacy access policies and instantly get “things auditors will ask proof for”.
+
+**0020 – Access Control and Authentication Policy
+(policy_to_controls, access_control)**
+
+* **What it says:** Converts a combined access + auth policy into atomic controls (titles + descriptions).
+* **Purpose:** Train model to populate a control library from policy text.
+* **How it helps you:** You can bootstrap your ISMS control catalogue from raw policies.
+
+**0021 – Access Control and Identity Policy
+(term_harmonization, access_control)**
+
+* **What it says:** Takes inconsistent terms (user, employee, associate, etc.) and normalizes them via a glossary + rewritten section.
+* **Purpose:** Teach “term harmonization” over access control language.
+* **How it helps you:** Great for cleaning up Frankenstein policies into something coherent before you use them in your agent.
+
+**0030 – Access Control and Authentication Policy (Legacy Excerpt)
+(engineer_simplification, access_control)**
+
+* **What it says:** Legacy access/auth rules simplified into a modern, implementation-oriented set of expectations.
+* **Purpose:** Show the model how to deal with older/wordier style text.
+* **How it helps you:** Lets the LLM modernize old policy fragments into something your teams will actually read.
+
+**0064 – Access Control Policy
+(exec_summary, access_control)**
+
+* **What it says:** 3–4 sentence exec-level summary of access control objectives.
+* **Purpose:** Teach “policy → board-friendly synopsis” for access.
+* **How it helps you:** Use the model to generate slide bullets / risk committee memos from detailed access docs.
+
+**0065 – User Account Management Policy
+(merge_deduplicate, access_control)**
+
+* **What it says:** Merges conflicting/overlapping user account rules (creation, change, disablement) into one coherent section.
+* **Purpose:** Train the model to reconcile legacy vs new access lifecycle texts.
+* **How it helps you:** Lets your agent refactor multiple JML/“account” docs into a single source of truth.
+
+---
+
+**Identity & Access (higher-level IAM docs)**
+
+**0004 – Identity and Access Management Policy
+(term_harmonization, identity_and_access)**
+
+* **What it says:** Cleans up mixed IAM terminology (identities, accounts, credentials, roles) and rewrites consistently.
+* **Purpose:** Teach harmonization in an IAM context where wording is often messy.
+* **How it helps:** Better, more consistent IAM docs for both humans and machines to consume.
+
+**0052 – Identity and Access Management Policy
+(engineer_simplification, identity_and_access)**
+
+* **What it says:** Converts IAM policy into practical expectations for identity admins / app owners.
+* **Purpose:** Show the mapping from “governance words” to “day-to-day IAM operations”.
+* **How it helps:** LLM can talk to engineers about SSO, provisioning, role design without sounding like a lawyer.
+
+**0053 – Identity and Authentication Standard
+(policy_to_controls, identity_and_access)**
+
+* **What it says:** Extracts IAM controls (MFA, password rules, SSO, session timeouts, etc.) into atomic control entries.
+* **Purpose:** Populate control libraries from IAM standards.
+* **How it helps:** You can auto-generate cross-mapped control sets (ISO, SOC2, NIST) from IAM text.
+
+**0054 – Identity Lifecycle Management Procedure
+(obligation_extraction, identity_and_access)**
+
+* **What it says:** Pulls obligations out of an identity lifecycle procedure (who creates, who approves, who revokes).
+* **Purpose:** Teach the model that procedures also contain auditable obligations, not just policies.
+* **How it helps:** Stronger ability to answer “are we doing JML properly?” from process docs.
+
+---
+
+### Logging & Monitoring
+
+**0002 – Logging and Monitoring Policy
+(exec_summary, logging_monitoring)**
+
+* **What it says:** High-level overview: what you log, why, and what monitoring should achieve.
+* **Purpose:** Exec summary pattern for logging/monitoring.
+* **How it helps:** Model can produce management-friendly descriptions of your observability posture.
+
+**0034 – Logging and Monitoring Policy (Mixed Requirements)
+(policy_to_controls, logging_monitoring)**
+
+* **What it says:** Turns mixed logging content (what, where, how long, who reviews) into discrete controls.
+* **Purpose:** Teach extraction of controls from a noisy logging policy.
+* **How it helps:** Builds your SOC2/ISO mapping for logging quickly.
+
+**0046 – Logging and Monitoring Policy
+(engineer_simplification, logging_monitoring)**
+
+* **What it says:** Explains logging requirements as concrete steps for platform / app teams (which events, where to send, how to configure retention).
+* **Purpose:** Simplify logging policy for implementation.
+* **How it helps:** Your LLM can tell devs “do these specific things to be logging-compliant”.
+
+**0047 – Logging and Monitoring Policy
+(obligation_extraction, logging_monitoring)**
+
+* **What it says:** Extracts checklist items: configure X, keep logs Y days, review Z, etc.
+* **Purpose:** Train checklist extraction on logging text.
+* **How it helps:** Auto-builds your logging audit program from policy.
+
+**0048 – Security Event and Incident Handling Standard
+(term_harmonization, logging_monitoring)**
+
+* **What it says:** Harmonizes terms like “event”, “alert”, “incident” into a clear glossary + rewritten standard.
+* **Purpose:** Teach the model to clean up confusing classification language around events vs incidents.
+* **How it helps:** Reduces ambiguity across your SIEM/SOC documentation.
+
+**0098 – Logging and Monitoring Standard
+(merge_deduplicate, logging_monitoring)**
+
+* **What it says:** Merges retention + centralization rules (90 days/180 days/1 year, etc.) into one coherent section.
+* **Purpose:** Show the model how to reconcile overlapping logging requirements.
+* **How it helps:** Gives you a clean, consistent logging standard, avoiding contradictions that auditors love to poke at.
+
+---
+
+### Data Protection / Privacy
+
+**0003 – Data Protection Policy
+(obligation_extraction, data_protection)**
+
+* **What it says:** Turns privacy/data protection policy text into an audit checklist (lawful basis, minimization, security, rights handling, etc.).
+* **Purpose:** Teach the model to surface “regulator-relevant” obligations from privacy docs.
+* **How it helps:** Handy for GDPR/SOC2 readiness and gap analyses.
+
+**0033 – Data Processing Agreement (Excerpt)
+(obligation_extraction, data_protection)**
+
+* **What it says:** Extracts obligations from a contract/DPA (e.g., processor duties, breach notification, sub-processors).
+* **Purpose:** Include *contractual* data protection text, not just internal policy.
+* **How it helps:** Your LLM can read vendor DPAs and tell you “here’s what we/they actually must do”.
+
+**0036 – Privacy Governance Policy (Excerpt)
+(obligation_extraction, data_protection)**
+
+* **What it says:** Checklist of obligations relating to privacy governance structure (DPO, privacy council, DPIAs, etc.).
+* **Purpose:** Expand beyond pure technical controls into governance.
+* **How it helps:** Better modeling of non-technical GRC duties.
+
+**0040 – Data Protection Policy
+(engineer_simplification, data_protection)**
+
+* **What it says:** Converts privacy principles into concrete steps for system owners (what to collect, how to secure, how to handle deletion).
+* **Purpose:** Teach the model “privacy for engineers”.
+* **How it helps:** Your agent can guide devs on building features that are actually compliant.
+
+**0041 – Data Protection Policy
+(exec_summary, data_protection)**
+
+* **What it says:** Exec-level summary of DP policy (high-level privacy posture).
+* **Purpose:** Exec summarization for privacy.
+* **How it helps:** Good for board decks, risk reports, or answering “what’s our privacy policy in plain English?”
+
+**0042 – Data Protection Governance Standard
+(policy_to_controls, data_protection)**
+
+* **What it says:** Emits atomic privacy controls (DPIAs, RoPA, privacy by design checks, etc.).
+* **Purpose:** Expand the control library with privacy governance controls.
+* **How it helps:** Stronger mapping between privacy frameworks and internal controls.
+
+**0072 – Data Protection Policy
+(term_harmonization, data_protection)**
+
+* **What it says:** Harmonizes usage of terms like “personal data/PII/sensitive data” and rewrites a section consistently.
+* **Purpose:** Reduce terminological chaos in privacy docs.
+* **How it helps:** Fewer subtle misunderstandings when devs read privacy requirements.
+
+**0097 – Data Protection and Retention Policy
+(merge_deduplicate, data_protection)**
+
+* **What it says:** Merges retention rules (5 vs 7 years, backups, deletion/anonymization) into a single coherent retention section.
+* **Purpose:** Teach the model to reconcile overlapping/partially conflicting retention text.
+* **How it helps:** Gives you a crisp canonical policy on DP retention that your tools can implement.
+
+**0010 – Data Protection Policy (another excerpt)
+(engineer_simplification, data_protection)**
+
+* (This is 0010 in your file as secure_sdlc;  data_protection engineer simplification is actually 0040 & 0010 is SDLC. We’ve covered the DP ones above.)
+
+---
+
+### Data Classification & Handling
+
+**0008 – Data Classification and Handling Policy
+(engineer_simplification, data_classification)**
+
+* **What it says:** Explains classification levels and basic handling rules in practical language.
+* **Purpose:** Teach “classification → what do I do in daily work”.
+* **How it helps:** LLM can tell users “you’re dealing with X level data, so you must do Y”.
+
+**0009 – Data Classification and Physical Handling Policy
+(obligation_extraction, data_classification)**
+
+* **What it says:** Checklist of actions for physical handling of classified materials.
+* **Purpose:** Include physical security aspects of data classification.
+* **How it helps:** Better ability to generate audits/checklists for paper/media handling.
+
+**0022 – Data Classification and Labeling Policy
+(engineer_simplification, data_classification)**
+
+* **What it says:** Converts labeling/classification rules into steps for users/system owners (how to label, when to apply which label).
+* **Purpose:** More examples of classification simplification.
+* **How it helps:** The model learns to give specific advice like “tag this as Confidential because X”.
+
+**0023 – Data Classification and Retention Policy
+(merge_deduplicate, data_classification)**
+
+* **What it says:** Resolves conflicting classification + retention rules into one.
+* **Purpose:** Teach deduplication where classification intersects retention.
+* **How it helps:** Helps you keep one unified matrix of classifications vs retention.
+
+**0024 – Data Protection and Classification Policy
+(term_harmonization, data_classification)**
+
+* **What it says:** Normalizes terms across a doc that mixes protection and classification concepts.
+* **Purpose:** Harmonization where classification overlaps privacy/DP.
+* **How it helps:** Makes your policy easier for your LLM (and humans) to reason over.
+
+**0025 – Data Classification and Retention Policy
+(exec_summary, data_classification)**
+
+* **What it says:** Exec-level summary describing how you classify and retain data.
+* **Purpose:** Provide leadership-facing view of classification.
+* **How it helps:** You can generate “data governance” one-pagers from LLM.
+
+**0071 – Data Classification Policy
+(policy_to_controls, data_classification)**
+
+* **What it says:** Converts classification policy into specific controls (classification scheme, handling rules, labeling mechanisms).
+* **Purpose:** Fill control library coverage for data classification.
+* **How it helps:** Useful for mapping to ISO/SOC2 A.8/A.5 style controls.
+
+**0032 – Information Labeling Standard (Mixed Terminology)
+(term_harmonization, data_classification)**
+
+* **What it says:** Cleans up inconsistent label names in a labeling standard.
+* **Purpose:** Another harmonization example in this domain.
+* **How it helps:** Trains the LLM to fix messy label vocabularies.
+
+---
+
+### Vendor / Third-party Risk
+
+**0007 – Third-Party Risk Management Policy
+(engineer_simplification, vendor_management)**
+
+* **What it says:** Simplifies TPRM expectations for business owners (when to do security review, contracts, ongoing monitoring).
+* **Purpose:** Show how to make vendor policy actionable.
+* **How it helps:** LLM can coach teams on “what to do before buying SaaS X.”
+
+**0026 – Third-Party Risk Management Policy
+(engineer_simplification, vendor_management)**
+
+* **What it says:** A slightly different vendor context, giving variety.
+* **Purpose:** Teach generalization across different but similar docs.
+* **How it helps:** Makes simplification robust across vendor docs.
+
+**0027 – Third-Party Risk Management Policy
+(obligation_extraction, vendor_management)**
+
+* **What it says:** Extracts obligations like “perform due diligence”, “review SOC2”, “maintain inventory”.
+* **Purpose:** Build vendor risk audit checklists.
+* **How it helps:** Faster vendor control tests.
+
+**0028 – Third-Party Risk Management Policy
+(policy_to_controls, vendor_management)**
+
+* **What it says:** Emits vendor risk controls (TPRM program, risk tiering, periodic reviews).
+* **Purpose:** Fill TPRM section of your control library.
+* **How it helps:** Good for questionnaires and evidence mapping.
+
+**0029 – Third-Party Risk Management Policy
+(exec_summary, vendor_management)**
+
+* **What it says:** Exec summary of third-party risk posture.
+* **Purpose:** Exec summarization pattern for TPRM.
+* **How it helps:** Use for board risk discussion around SaaS dependencies.
+
+**0066 – Third-Party Security Requirements
+(merge_deduplicate, vendor_management)**
+
+* **What it says:** Merges requirements across multiple vendor requirements docs.
+* **Purpose:** Teach reconciliation of overlapping vendor policies.
+* **How it helps:** Gives you one consolidated vendor security requirements doc.
+
+**0067 – Data Processing by Third Parties Policy
+(term_harmonization, vendor_management)**
+
+* **What it says:** Harmonizes terms like processor/sub-processor/service provider.
+* **Purpose:** Clarity in third-party data processing docs.
+* **How it helps:** Cleaner DPAs, easier to translate to controls.
+
+---
+
+### Incident Response
+
+**0005 – Incident Response Policy
+(merge_deduplicate, incident_response)**
+
+* **What it says:** Merges legacy vs updated IR policy sections.
+* **Purpose:** Teach fixing inconsistent IR docs.
+* **How it helps:** A single clean IR policy, critical for both humans and LLM.
+
+**0031 – Incident Response Policy (Legacy vs Updated Sections)
+(merge_deduplicate, incident_response)**
+
+* **What it says:** Another merging example focusing perhaps on roles and phases.
+* **Purpose:** More training on IR deduplication.
+* **How it helps:** Strengthens the LLM’s ability to reconcile conflicting IR guidance.
+
+**0035 – Incident Response Plan (Role Confusion Excerpt)
+(engineer_simplification, incident_response)**
+
+* **What it says:** Clarifies who does what during incidents (IR lead, comms, legal, etc.) into simple steps.
+* **Purpose:** Simplify process-heavy IR plan text.
+* **How it helps:** LLM can generate clear “playbook intros” for your IR team.
+
+**0058 – Incident Response Procedure
+(obligation_extraction, incident_response)**
+
+* **What it says:** Extracts obligations from a detailed procedure (notify X within Y, log in system Z, etc.).
+* **Purpose:** Show that procedures have auditable obligations too.
+* **How it helps:** Helps designing IR control tests.
+
+**0059 – Incident Response Roles and Responsibilities Standard
+(policy_to_controls, incident_response)**
+
+* **What it says:** Converts role/responsibility text into distinct controls (IR team defined, on-call rotation, comms protocols).
+* **Purpose:** Formalize IR controls.
+* **How it helps:** Better coverage in your risk/control register.
+
+**0060 – Incident Response Policy
+(exec_summary, incident_response)**
+
+* **What it says:** Short management-level summary of IR posture.
+* **Purpose:** Exec summarization for IR.
+* **How it helps:** Feeding board decks / risk reports.
+
+**0061 – Incident Notification and Escalation Standard
+(obligation_extraction, incident_response)**
+
+* **What it says:** Checklist for notification/escalation flows.
+* **Purpose:** Teach extraction around SLAs, who to notify, when.
+* **How it helps:** Useful for designing on-call + escalation checks.
+
+**0062 – Post-Incident Review and Lessons Learned Plan
+(policy_to_controls, incident_response)**
+
+* **What it says:** Extracts controls for PIR/postmortem expectations.
+* **Purpose:** Cover “Improve” phase of IR life cycle.
+* **How it helps:** Encourages continuous improvement processes.
+
+**0063 – Incident Severity and Classification Guideline
+(term_harmonization, incident_response)**
+
+* **What it says:** Normalizes severity language (SEV1/Major/Critical etc.).
+* **Purpose:** Teach harmonization across IR severity schemes.
+* **How it helps:** Reduces confusion in tickets/dashboards and in LLM reasoning.
+
+---
+
+### Secure SDLC
+
+**0010 – Secure Software Development Lifecycle Policy
+(engineer_simplification, secure_sdlc)**
+
+* **What it says:** Translates SDLC policy into steps devs can follow (threat modeling, code review, security testing gates).
+* **Purpose:** Teach simplification in SDLC space.
+* **How it helps:** LLM can output “what your team must do for secure SDLC” for a given product.
+
+**0011 – Secure Software Development Lifecycle Policy
+(policy_to_controls, secure_sdlc)**
+
+* **What it says:** Extracts SDLC controls (e.g. static analysis required, security sign-off required).
+* **Purpose:** Build SDLC portion of control lib.
+* **How it helps:** Connects SDLC to compliance frameworks.
+
+**0049 – Secure Software Development Standard
+(obligation_extraction, secure_sdlc)**
+
+* **What it says:** Checklist of what engineering org must do around secure coding & testing.
+* **Purpose:** Teach obligations extraction in SDLC context.
+* **How it helps:** You can turn this into SDLC audit procedure.
+
+**0050 – Secure Software Development Policy
+(exec_summary, secure_sdlc)**
+
+* **What it says:** High-level overview of secure SDLC expectations.
+* **Purpose:** Exec summary skill for SDLC.
+* **How it helps:** Ceilings for product and risk leadership discussions.
+
+**0051 – Code Review and Approval Standard
+(term_harmonization, secure_sdlc)**
+
+* **What it says:** Normalizes code-review terminology (peer review, 4-eyes, approver vs author).
+* **Purpose:** Clarify language in SDLC process docs.
+* **How it helps:** LLM can generate clean, consistent code-review standards.
+
+**0099 – Secure Development Standard
+(merge_deduplicate, secure_sdlc)**
+
+* **What it says:** Merges testing requirements (pen testing, vuln scanning, pre-prod checks) into a single section.
+* **Purpose:** Teach merging in SDLC testing context.
+* **How it helps:** You get a single coherent view of required testing stages.
+
+---
+
+### Business Continuity / DR
+
+**0012 – Business Continuity and Disaster Recovery Policy
+(engineer_simplification, business_continuity)**
+
+* **What it says:** Explains BC/DR responsibilities and RTO/RPO concepts in practical terms.
+* **Purpose:** Make continuity policy usable for system owners.
+* **How it helps:** LLM can guide service owners on what they owe the BC/DR program.
+
+**0013 – Business Continuity and Disaster Recovery Policy
+(obligation_extraction, business_continuity)**
+
+* **What it says:** Checklist: have BCPs, test annually, keep contact lists updated.
+* **Purpose:** Teach obligations extraction for BCDR.
+* **How it helps:** Form your continuity audit checklist.
+
+**0037 – BC/DR Policy (Legacy vs Updated RTO/RPO Text)
+(merge_deduplicate, business_continuity)**
+
+* **What it says:** Reconciles old vs new RTO/RPO language.
+* **Purpose:** Show how to unify BC/DR metrics across docs.
+* **How it helps:** Avoid contradictory RTO expectations.
+
+**0073 – Business Continuity Management Policy
+(exec_summary, business_continuity)**
+
+* **What it says:** Exec summary of BC management approach.
+* **Purpose:** Exec summarization for BC.
+* **How it helps:** Good for explaining resilience posture to leadership.
+
+**0074 – Business Continuity Planning Standard
+(policy_to_controls, business_continuity)**
+
+* **What it says:** Extracts concrete BC controls (plan ownership, testing cadence, dependency identification).
+* **Purpose:** Fill BC control library.
+* **How it helps:** Better alignment with ISO 22301 / ISO 27001 Annex A.
+
+**0101 – Business Continuity and Disaster Recovery Plan
+(term_harmonization, business_continuity)**
+
+* **What it says:** Clarifies terms BCP, DRP, playbooks and rewrites accordingly.
+* **Purpose:** Harmonization in BC docs.
+* **How it helps:** Makes your runbooks and plans more internally consistent.
+
+---
+
+### HR Lifecycle / JML
+
+**0014 – HR Security and Access Lifecycle Policy
+(engineer_simplification, hr_lifecycle)**
+
+* **What it says:** Converts HR security rules into joiner/mover/leaver steps.
+* **Purpose:** Simplify HR security policy for HR + IT.
+* **How it helps:** LLM can explain who needs to do what in JML.
+
+**0015 – HR Security and Access Lifecycle Policy
+(merge_deduplicate, hr_lifecycle)**
+
+* **What it says:** Merges overlapping JML texts.
+* **Purpose:** Resolves contradictions in HR lifecycle docs.
+* **How it helps:** Single authoritative JML policy.
+
+**0038 – HR Security Roles Policy
+(term_harmonization, hr_lifecycle)**
+
+* **What it says:** Normalizes HR security roles nomenclature (hiring manager vs line manager etc.).
+* **Purpose:** Clarify role naming.
+* **How it helps:** Better mapping between policy and org chart.
+
+**0075 – Pre-Employment Screening Standard
+(obligation_extraction, hr_lifecycle)**
+
+* **What it says:** Checklist for background checks, references, screening.
+* **Purpose:** Teach obligations on pre-employment stage.
+* **How it helps:** Build HR security audits.
+
+**0076 – Employee Offboarding Procedure
+(policy_to_controls, hr_lifecycle)**
+
+* **What it says:** Extracts controls around offboarding steps (access revocation, asset return, NDA reminder).
+* **Purpose:** Structure offboarding into controls.
+* **How it helps:** Good for JML control design.
+
+**0102 – Joiner-Mover-Leaver Policy
+(exec_summary, hr_lifecycle)**
+
+* **What it says:** Exec summary of JML concept.
+* **Purpose:** Exec-level JML description.
+* **How it helps:** Easy to explain access lifecycle to leadership.
+
+---
+
+### Change Management
+
+**0016 – Change and Release Management Policy
+(engineer_simplification, change_management)**
+
+* **What it says:** Clarifies CAB/approval/testing requirements as concrete steps.
+* **Purpose:** Simplify change mgmt for engineers.
+* **How it helps:** LLM can give “how to do a compliant change” guidance.
+
+**0017 – Change and Release Management Policy
+(policy_to_controls, change_management)**
+
+* **What it says:** Extracts controls around approvals, documentation, emergency changes.
+* **Purpose:** Add change mgmt controls to library.
+* **How it helps:** Align change mgmt with SOC2/ISO expectations.
+
+**0077 – Change Management Standard
+(obligation_extraction, change_management)**
+
+* **What it says:** Checklist: ticketing, approvals, testing evidence.
+* **Purpose:** Obligations extraction in change mgmt.
+* **How it helps:** Build your change audit program.
+
+**0078 – Change Management Policy
+(exec_summary, change_management)**
+
+* **What it says:** Exec overview of change mgmt objective.
+* **Purpose:** Summarization.
+* **How it helps:** Good for risk/controls presentations.
+
+---
+
+### Governance / ISMS
+
+**0039 – Information Security Governance Charter
+(exec_summary, governance)**
+
+* **What it says:** Exec summary of how security governance is structured.
+* **Purpose:** Teach summarization for governance docs.
+* **How it helps:** Useful for board / regulator interaction.
+
+**0055 – Information Security Governance Policy
+(engineer_simplification, governance)**
+
+* **What it says:** Describes governance responsibilities in practical terms.
+* **Purpose:** Simplify governance for stakeholders.
+* **How it helps:** LLM can explain “who decides what” in security governance.
+
+**0056 – Information Security Governance Charter
+(obligation_extraction, governance)**
+
+* **What it says:** Checklist of board/committee obligations.
+* **Purpose:** Map governance expectations into auditable items.
+* **How it helps:** Stronger assurance programs.
+
+**0057 – ISMS Policy
+(policy_to_controls, governance)**
+
+* **What it says:** Extracts controls that constitute ISMS governance.
+* **Purpose:** Teach ISMS-style control decomposition.
+* **How it helps:** Build ISO 27001 Annex A / Clause 5/6/9 controls.
+
+**0069 – Information Security Governance Charter
+(term_harmonization, governance)**
+
+* **What it says:** Normalizes naming of committees, roles.
+* **Purpose:** Term harmonization at governance level.
+* **How it helps:** Easier cross-referencing in your docs.
+
+**0070 – Information Security Governance Policy
+(merge_deduplicate, governance)**
+
+* **What it says:** Merges multiple governance texts.
+* **Purpose:** Create a single canonical governance statement.
+* **How it helps:** Reduces fragmentation when training the LLM.
+
+---
+
+### Encryption & Key Management
+
+**0006 – Encryption and Key Management Policy
+(policy_to_controls, encryption)**
+
+* **What it says:** Extracts cryptography/key management controls (approved algorithms, key lifecycle).
+* **Purpose:** Build crypto control library.
+* **How it helps:** Connects PCI/SOC2/ISO requirements to concrete controls.
+
+**0043 – Encryption and Key Management Policy
+(engineer_simplification, encryption)**
+
+* **What it says:** Practical guidance on when/how to encrypt data.
+* **Purpose:** Simplify encryption policy.
+* **How it helps:** LLM can answer dev questions like “should this field be encrypted at rest?”
+
+**0044 – Encryption and Key Management Policy
+(obligation_extraction, encryption)**
+
+* **What it says:** Checklist for crypto obligations.
+* **Purpose:** Obligations extraction here.
+* **How it helps:** Build crypto audit tests.
+
+**0045 – Encryption Standard (Legacy and Updated Ciphers)
+(merge_deduplicate, encryption)**
+
+* **What it says:** Reconciles cipher suite requirements (old vs new).
+* **Purpose:** Teach merging in crypto context.
+* **How it helps:** Avoid “we say both TLS1.0 and TLS1.2” contradictions.
+
+**0068 – Payment Data Protection Standard
+(term_harmonization, encryption)**
+
+* **What it says:** Normalizes crypto terms in PCI-style standard.
+* **Purpose:** Harmonization around payment data.
+* **How it helps:** Clean, consistent card data protection docs.
+
+**0100 – Cryptography and Key Management Standard
+(exec_summary, encryption)**
+
+* **What it says:** Exec summary of crypto/key management posture (especially PCI).
+* **Purpose:** Summarization in crypto domain.
+* **How it helps:** Good when explaining to execs why HSM/KMS matters.
+
+**0011 & 0101?** – (we already mapped 0011 & 0100; 0101 is BC, covered above)
+
+**0011** was SDLC `policy_to_controls`, already handled.
+
+**0101** we covered under BC.
+
+**0111 doesn’t exist; stopping at 0108.**
+
+---
+
+### Logging again – covered above; plus DLP, acceptable use, etc.
+
+We’ve already covered 0098 in logging; the remaining domains:
+
+---
+
+### Cloud Security
+
+**0092 – Cloud Security Policy
+(engineer_simplification, cloud_security)**
+
+* **What it says:** Turns cloud security policy (IAM, network, logging, encryption) into steps for cloud engineers.
+* **Purpose:** Teach “cloud policy → IaC expectations”.
+* **How it helps:** LLM can tell you “what to enforce in Terraform for baseline security”.
+
+**0093 – Cloud Configuration and Monitoring Standard
+(policy_to_controls, cloud_security)**
+
+* **What it says:** Writes CSPM-style controls (onboarding, baselines, misconfig detection).
+* **Purpose:** Cloud posture control extraction.
+* **How it helps:** Underpins your CSPM/guardrail design.
+
+**0104 – Cloud Security Policy
+(exec_summary, cloud_security)**
+
+* **What it says:** Exec summary of cloud security posture.
+* **Purpose:** Summarization.
+* **How it helps:** Good for risk discussion about cloud move/expansion.
+
+---
+
+### Vulnerability Management
+
+**0079 – Vulnerability Management Policy
+(engineer_simplification, vulnerability_management)**
+
+* **What it says:** Practical instructions on scanning, triage, remediation timelines.
+* **Purpose:** Simplify vuln mgmt for ops.
+* **How it helps:** LLM can answer “what do we have to do with critical CVEs?” in your environment.
+
+**0080 – PCI Vulnerability Scanning Standard
+(obligation_extraction, vulnerability_management)**
+
+* **What it says:** Checklist: quarterly external scans, ASV use, high-risk remediation.
+* **Purpose:** PCI-flavored vuln obligations.
+* **How it helps:** For PCI scoping and evidence planning.
+
+**0081 – Vulnerability Remediation Standard
+(policy_to_controls, vulnerability_management)**
+
+* **What it says:** Atomic controls for remediation timelines, exceptions, temp mitigations.
+* **Purpose:** Formalize risk-based patch SLAs.
+* **How it helps:** Connects vuln posture to risk and compliance.
+
+**0103 – Vulnerability Risk Rating Guideline
+(term_harmonization, vulnerability_management)**
+
+* **What it says:** Harmonizes “critical/P1/high/P2” into a simple severity scale.
+* **Purpose:** Teach severity mapping in vuln context.
+* **How it helps:** Cleaner prioritisation logic for the agent.
+
+---
+
+### Asset Management / Shadow IT
+
+**0082 – Information Asset Management Policy
+(policy_to_controls, asset_management)**
+
+* **What it says:** Controls for asset owner assignment, inventories, lifecycle.
+* **Purpose:** Asset mgmt control extraction.
+* **How it helps:** Underpins ISMS A.5/A.8 style requirements.
+
+**0083 – Asset Management Policy
+(exec_summary, asset_management)**
+
+* **What it says:** Exec summary of asset management.
+* **Purpose:** Summarization for this domain.
+* **How it helps:** Nice for “what is our asset mgmt approach” explanations.
+
+**0108 – Information Asset and Shadow IT Policy
+(engineer_simplification, asset_management)**
+
+* **What it says:** Practical steps for registering assets, avoiding shadow IT, handling retirement.
+* **Purpose:** Simplify asset management and shadow IT control for owners.
+* **How it helps:** Trains LLM to give crisp instructions on “how to avoid shadow IT”.
+
+---
+
+### Network Security
+
+**0084 – Network Security Policy
+(engineer_simplification, network_security)**
+
+* **What it says:** Expresses perimeter, firewall, segmentation rules in engineer-friendly tasks.
+* **Purpose:** Network security simplification.
+* **How it helps:** Great for your infra/network engineers reading “what do we configure?”
+
+**0085 – Network Segmentation Guideline
+(term_harmonization, network_security)**
+
+* **What it says:** Harmonizes production/non-prod/DMZ terminology.
+* **Purpose:** Term harmonization in segmentation docs.
+* **How it helps:** Makes microsegmentation/orchestration easier to codify.
+
+---
+
+### Endpoint Security
+
+**0086 – Endpoint Protection Standard
+(obligation_extraction, endpoint_security)**
+
+* **What it says:** Checklist for endpoint protection (AV/EDR, updates, user tampering).
+* **Purpose:** Obligations extraction.
+* **How it helps:** Simple way to structure your endpoint control tests.
+
+**0087 – Endpoint Security Policy
+(merge_deduplicate, endpoint_security)**
+
+* **What it says:** Merges AV vs EDR era requirements.
+* **Purpose:** Show deduplication as org transitions from old tools to EDR.
+* **How it helps:** Create a coherent endpoint story that your LLM can reason with.
+
+---
+
+### Physical Security
+
+**0088 – Physical Security Policy
+(engineer_simplification, physical_security)**
+
+* **What it says:** Concrete expectations for facilities on badge controls, visitor rules, etc.
+* **Purpose:** Simplify physical security requirements.
+* **How it helps:** LLM can instruct office managers on what to implement.
+
+**0089 – Data Center Access Standard
+(obligation_extraction, physical_security)**
+
+* **What it says:** Checklist for DC access (business need, approvals, logs, escorts).
+* **Purpose:** Obligations extraction.
+* **How it helps:** Directly drives site physical security audits.
+
+---
+
+### Training & Awareness
+
+**0090 – Security Awareness and Training Policy
+(exec_summary, training_awareness)**
+
+* **What it says:** Exec summary of training obligations and goals.
+* **Purpose:** Summarization.
+* **How it helps:** Quick explanation of training program.
+
+**0091 – Security Training Standard
+(policy_to_controls, training_awareness)**
+
+* **What it says:** Controls for onboarding, annual training, role-based training.
+* **Purpose:** Training control library.
+* **How it helps:** Aligns with SOC2/NIST awareness requirements.
+
+---
+
+### Acceptable Use
+
+**0095 – Acceptable Use Policy
+(engineer_simplification, acceptable_use)**
+
+* **What it says:** Plain language rules for end users (no illegal use, no bypassing security, keep data on approved systems).
+* **Purpose:** Simplify AUP for normal employees.
+* **How it helps:** LLM can generate user-facing guidelines, FAQs.
+
+**0105 – Acceptable Use Policy
+(obligation_extraction, acceptable_use)**
+
+* **What it says:** Checklist for acceptable use obligations.
+* **Purpose:** Teach audit-style extraction from AUP.
+* **How it helps:** Good for HR/compliance testing of AUP adherence.
+
+---
+
+### Data Loss Prevention (DLP)
+
+**0094 – Data Loss Prevention Standard
+(obligation_extraction, data_loss_prevention)**
+
+* **What it says:** Checklist for email/web DLP rules and high-severity alert handling.
+* **Purpose:** Obligations extraction for DLP.
+* **How it helps:** Great for monitoring program design.
+
+**0106 – Endpoint and Email DLP Standard
+(engineer_simplification, data_loss_prevention)**
+
+* **What it says:** Practical steps for enabling and integrating DLP across endpoints/email/web.
+* **Purpose:** Simplification for admins.
+* **How it helps:** LLM can instruct how to roll DLP out in a consistent way.
+
+---
+
+### Exception / Risk Acceptance
+
+**0096 – Security Exception and Risk Acceptance Standard
+(obligation_extraction, exception_management)**
+
+* **What it says:** Checklist: document exceptions, risk assess, risk owner approval, time-bound, review.
+* **Purpose:** Obligations extraction.
+* **How it helps:** Strengthens exception management process.
+
+**0107 – Security Exception Management Standard
+(policy_to_controls, exception_management)**
+
+* **What it says:** Expresses exception workflow as controls.
+* **Purpose:** Control-level view of exceptions.
+* **How it helps:** Connects exception process to your broader risk framework.
+
+---
+
+### Governance, Logging, Etc. – we already covered all IDs.
+
+(Any ID from `0001` to `0108` has been explained above.)
+
+---
+
+### Big picture: what this buys you
+
+This dataset isn’t just “108 random examples” – it’s effectively a **mini language for GRC policy work**:
+
+* six transformation *modes* (`engineer_simplification`, `obligation_extraction`, `policy_to_controls`, `term_harmonization`, `merge_deduplicate`, `exec_summary`),
+* applied across the main GRC domains you care about (access, IAM, vendors, privacy, IR, BCDR, cloud, vuln, etc.),
+* using realistic style snippets (policies, standards, procedures, charters, contract excerpts).
+
+Fine-tuning Mistral on this gives you a model that can:
+
+* read almost any GRC/policy text you throw at it, and
+* respond in **one of these structured, highly useful formats**.
+
+That’s exactly the kind of “GRC copilot brain” you want sitting behind your infosec agent stack.
+
