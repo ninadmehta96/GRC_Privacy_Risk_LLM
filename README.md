@@ -2,12 +2,9 @@
 
 # Cluster1 — GRC LoRAs (Policy Refactor + Risk Narrative)
 
-<<<<<<< HEAD
 This repository is a **public slice** of my local InfoSec LLM work.
-=======
 This repository contains **Cluster 1** of an InfoSec LLM system: two LoRA adapters fine-tuned on
 **Mistral-7B-Instruct-v0.3** for:
->>>>>>> c02c27e (Revert "Public release: offline eval + synthetic samples")
 
 - **policy_refactor** — refactor messy policy text into a clear, structured policy section
 - **risk_narrative** — turn raw notes into an executive-ready narrative
