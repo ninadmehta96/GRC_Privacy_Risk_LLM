@@ -1,1 +1,0 @@
-# Marks unit_testing as a package so tests can import unit_testing.strict_rules

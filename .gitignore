@@ -1,40 +1,11 @@
-# Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-
-# Local envs
-.venv/
-venv/
+reports/
 .env
 .env.*
-
-# Outputs / reports
-eval_report*.jsonl
-smoke_eval.jsonl
-/tmp/
-*.log
-
-# Model artifacts (keep OUT of normal git)
+env_snapshot.txt
 adapters/
-mistral7b-*-lora-*/
-**/*.safetensors
-**/*.pt
-**/*.pth
-**/checkpoint-*/
-**/optimizer.pt
-**/scheduler.pt
-**/rng_state.pth
-**/trainer_state.json
-**/training_args.bin
+data/training_data/
+data/training_data_explanation/
+*.bak
 
-# HuggingFace cache (usually outside repo, but just in case)
-.cache/
-*.bak.*
-# ---- Cluster1 local artifacts ----
-reports/
-runs/
-eval_report*.jsonl
-smoke_eval*.jsonl
-*.bak.*
