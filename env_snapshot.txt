@@ -1,7 +1,0 @@
-torch: 2.9.1+cu128
-transformers: 4.57.3
-peft: 0.18.0
-nvidia_driver: 575.64.05
-cuda_driver: 12.9
-gpu: RTX 5090 24GB
-date_recorded: 2026-01-05
