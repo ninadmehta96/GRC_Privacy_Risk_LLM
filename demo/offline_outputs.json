@@ -1,0 +1,11 @@
+{
+  "policy_refactor": {
+    "good": "Scope\nThis policy applies to Company systems described in the source text.\n\nPolicy\nThe Company retains logs for troubleshooting and may share data with vendors when needed.\n\nTimelines\nRetention duration: TBD\n\nExceptions\nTBD\n\nRequired Inputs\n- Retention duration\n- Vendor access criteria and approvals\n- Data classification (not specified)",
+    "trap": "Scope\nThis policy applies to Company systems described in the source text.\n\nPolicy\nLogs are retained for 90 days and reviewed by the Security Team quarterly. Vendors must be compliant with GDPR.\n\nTimelines\nRetention duration: 90 days\n\nExceptions\nTBD\n\nRequired Inputs\n- Vendor list and contracts"
+  },
+  "risk_narrative": {
+    "good": "Facts\n- The source text indicates a potential privacy issue and escalation to a responsible owner.\n\nUnknowns\n- Impact: TBD\n- Likelihood: TBD\n\nRecommendations\n- Document the issue details and required inputs (TBD).",
+    "trap": "Facts\n- A privacy breach occurred and requires breach notification within 72 hours under GDPR.\n\nUnknowns\n- Impact: TBD\n\nRecommendations\n- Notify regulators and the Attorney General.\n- Security Team to review quarterly."
+  }
+}
+

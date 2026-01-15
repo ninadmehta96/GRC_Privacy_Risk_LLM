@@ -71,6 +71,7 @@ DATA_CLASS_ALIASES: Dict[str, List[str]] = {
 
 CADENCE_TERMS = [
     "daily", "weekly", "monthly", "quarterly", "annually",
+    "semi-annually", "semiannually", "biannually", "every 6 months", "every six months",
     "within 24 hours", "within 72 hours", "within 30 days",
 ]
 

@@ -30,5 +30,17 @@ public-eval:
 	  --data data/public_samples/risk_narrative_v2_devtest.jsonl --split test \
 	  --report $(REPORTS_DIR)/public_risk_narrative_test.jsonl
 
+.PHONY: demo-policy demo-risk demo-all
+
+demo-policy:
+	python -m src.demo_runner --task policy_refactor --case good --mode offline
+	python -m src.demo_runner --task policy_refactor --case trap --mode offline || true
+
+demo-risk:
+	python -m src.demo_runner --task risk_narrative --case good --mode offline
+	python -m src.demo_runner --task risk_narrative --case trap --mode offline || true
+
+demo-all: demo-policy demo-risk
+
 clean-reports:
 	rm -rf $(REPORTS_DIR)

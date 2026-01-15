@@ -8,6 +8,12 @@ In security, privacy, and compliance, **convincing but wrong** can cause real da
 This repo demonstrates a reliability approach that prevents a common failure:
 **the model invents specifics that were never provided**.
 
+Importantly, the public demo shows the full system shape:
+
+> **Inference → strict audit → PASS/FAIL verdict**
+
+Even when inference is “offline” (deterministic) for public CI, the contract and gate are real.
+
 ---
 
 ## The core failure mode: “Invented specifics”
@@ -28,9 +34,11 @@ make wrong compliance assertions, or mislead stakeholders.
 ## A concrete example (before / after)
 
 ### Input (messy policy text)
+
 > “We keep logs for troubleshooting and share data with vendors when needed.”
 
 This input does **not** specify:
+
 - retention duration
 - which data types
 - which vendors
@@ -38,21 +46,26 @@ This input does **not** specify:
 - which legal basis
 
 ### Naive output (sounds good, but unsafe)
+
 > “Logs are retained for 90 days and contain PII. The Security Team reviews vendor access quarterly. GDPR requires…”
 
 This output invented:
+
 - a number (90 days)
 - a data class (PII)
 - a role + cadence (Security Team / quarterly)
 - a legal claim (GDPR requires…)
 
 ### What we want instead (bounded + auditable)
+
 A safer output:
-- structures what *is known*
+
+- structures what is known
 - flags unknowns as **TBD**
 - avoids invented specifics
 
 Example:
+
 - “Retention duration: TBD”
 - “Data classification: not specified”
 - “Vendor approval workflow: TBD”
@@ -71,11 +84,14 @@ This public repo implements a strict audit that checks whether the output introd
 - legal claims not present in input
 - numbers/cadence not present in input
 
-If the output invents these, the evaluator flags it and CI fails.
+If the output invents these, the evaluator flags it and the demo produces a clear FAIL verdict.
 
 So the system shifts from:
+
 > “Trust the model”
+
 to
+
 > “Trust the contract + verification”
 
 ---
@@ -90,6 +106,7 @@ In adversarial environments, you learn quickly:
 - “perfect detection” doesn’t exist
 
 So you build systems that:
+
 - define boundaries
 - measure failure
 - degrade safely
@@ -104,7 +121,3 @@ This repo applies the same philosophy to LLM behavior.
 A simple framing:
 
 > “We don’t let the model make up facts. If the input didn’t say it, the output can’t claim it. Unknowns are explicit. The system is auditable.”
-
-That’s the difference between:
-- a demo that looks good
-- and a system that can be trusted.

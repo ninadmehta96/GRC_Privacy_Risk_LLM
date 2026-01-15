@@ -28,92 +28,71 @@ Instead of one giant assistant doing everything, you get a **portfolio of small,
 
 ---
 
-## Cluster Map (Roadmap)
+## The reliability pattern demonstrated here
 
-This is the intended long-term structure. Only Cluster 1 is demonstrated publicly.
+### 1) Inference as a swappable boundary
 
-### Cluster 1 — GRC / Privacy / Risk Narratives (public demo slice)
-- **policy_refactor**: convert messy policy text into structured, bounded policy language
-- **risk_narrative**: convert a finding into a structured risk statement (risk/impact/likelihood/mitigations)
-- **control_narrative**: map controls to narrative justification (why this control reduces risk)
+Public repos should be runnable and deterministic in CI.
 
-### Cluster 2 — DevSecOps / Security Architecture
-- threat model summaries (what could go wrong)
-- architecture risk tradeoffs (where the blast radius is)
-- secure-by-design control mapping
+So this repo introduces an explicit inference boundary with two modes:
 
-### Cluster 3 — SOC / IR / Detection Engineering
-- detection logic explanations + tuning proposals
-- triage narratives and containment plans
-- post-incident learning → prevention controls
+- **offline**: deterministic canned outputs (CI-safe)
+- **hf**: optional real Transformers inference (local use only)
 
-### Cluster 4 — Training / Human Risk / Policy Ops
-- security training content aligned to incidents
-- policy exceptions workflow narratives
+This lets the repo demonstrate the full pipeline (infer → audit → verdict) without requiring GPU or model downloads in CI.
 
-### Cluster 5 — Offensive / Research
-- recon summaries and exploit-path narratives
-- “what attacker would do next” reasoning (bounded and safe)
+### 2) Contracts: “Don’t invent what isn’t in input”
 
-**Why this structure matters:** it scales AI behavior like real systems: add capability without turning everything into an untestable blob.
-
----
-
-## The “Reliability Pattern” (what we actually demonstrate here)
-
-### 1) Task contracts: “Don’t invent what isn’t in input”
 LLMs frequently hallucinate:
+
 - **roles** (“Security Team must…” when no team is mentioned)
 - **data classes** (“PII/PHI” when the input never says it)
-- **legal claims** (“GDPR requires…” when the input doesn’t cite it)
+- **legal claims** (“GDPR requires…” without source)
 - **numbers/cadence** (“30 days / quarterly” without evidence)
 
 This repo encodes strict rules that detect those cases by comparing output to the raw input.
 
-### 2) Deterministic, CPU-only evaluation
-Public CI must be:
-- cheap
-- deterministic
-- runnable without GPU access
+### 3) Deterministic evaluation + gating
 
-So the public demo uses **synthetic** samples and a CPU-only offline audit.
+Public CI runs:
 
-### 3) CI as a behavior gate
-Every commit must pass:
 - lint
 - unit tests
-- offline strict audit
+- offline strict audits over synthetic samples
 
-This prevents “demo drift”: README says one thing, repo does another.
+Failures show up as explicit flags and reports, and CI blocks regressions.
 
 ---
 
-## Repository Modules (Public)
+## Repository modules (public)
 
 - `unit_testing/strict_rules.py`  
   Encodes the **behavior contract**: what is forbidden to invent.
 
-- `unit_testing/eval_offline_public.py`  
-  CPU-only audit runner over public sample JSONL files.
+- `src/inference.py`  
+  Defines the inference boundary (offline default; optional HF mode).
+
+- `src/demo_runner.py`  
+  Orchestrates: input → inference → strict audit → PASS/FAIL + report.
 
 - `data/public_samples/*.jsonl`  
-  Synthetic sample datasets used for demo and CI.
-
-- `.github/workflows/ci.yml`  
-  Public CI job running the above gates.
+  Synthetic sample datasets for offline evaluation and CI.
 
 ---
 
-## How to run the demo
+## How to run the public demo
 
 ```bash
 pip install -r requirements-dev.txt
-make ci
+make demo-all
 ```
 
-What you’ll see:
-- strict audit summaries
-- reports written to `reports/*.jsonl` (ignored from git)
+You’ll see:
+
+- one PASS case (bounded output with TBDs)
+- one FAIL case (intentional invented specifics flagged by strict rules)
+
+Reports are written to `reports/demo_*.json`.
 
 ---
 
@@ -124,15 +103,3 @@ What you’ll see:
 - customer data, proprietary datasets, or sensitive artifacts
 
 Those belong in the private repo. The public repo is about the **pattern**, not the proprietary payload.
-
----
-
-## How to extend (even publicly)
-
-If you add a new cluster capability publicly, you must add:
-
-1. A public synthetic dataset in `data/public_samples/`
-2. A contract rule (or reuse existing strict_rules)
-3. A deterministic evaluator invocation wired into `make ci`
-
-This keeps the public repo coherent and credible.
